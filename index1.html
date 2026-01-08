@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willkommen in Musterdorf - Unser Zuhause</title>
+    <style>
+        /* --- GRUNDEINSTELLUNGEN & VARIABLEN --- */
+        :root {
+            --primary-color: #2c5f2d; /* Waldgrün */
+            --secondary-color: #97bc62; /* Helles Grün */
+            --accent-color: #ffc857; /* Warmes Gelb */
+            --text-color: #333;
+            --bg-light: #f4f7f6;
+            --white: #ffffff;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- NAVIGATION --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-contact {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+
+        .btn-contact:hover {
+            background-color: #1e421f;
+            color: var(--white);
+        }
+
+        /* --- HERO SECTION (Startbild) --- */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://source.unsplash.com/1600x900/?village,landscape,germany');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background-color: var(--accent-color);
+            color: #333;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- SECTIONS ALLGEMEIN --- */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        /* --- NEUIGKEITEN (Karten Design) --- */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-image {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .date {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .news-content h3 { margin-bottom: 0.5rem; }
+
+        /* --- ÜBER UNS / VEREINE --- */
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .about-text { flex: 1; }
+        .about-image { 
+            flex: 1; 
+            height: 400px; 
+            border-radius: 10px;
+            background: url('https://source.unsplash.com/800x600/?community,people') center/cover;
+            box-shadow: 20px 20px 0px var(--secondary-color);
+        }
+
+        /* --- EVENTS TABELLE --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #222;
+            color: #ccc;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 { color: var(--white); margin-bottom: 1rem; }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Einfachheitshalber Menü auf Mobile ausgeblendet (JS nötig für Toggle) */
+            .hero h1 { font-size: 2.5rem; }
+            .about-container { flex-direction: column; }
+            .about-image { width: 100%; box-shadow: 10px 10px 0px var(--secondary-color); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <nav>
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                Musterdorf
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Start</a></li>
+                <li><a href="#news">Aktuelles</a></li>
+                <li><a href="#vereine">Leben & Vereine</a></li>
+                <li><a href="#events">Kalender</a></li>
+                <li><a href="#contact" class="btn-contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <h1>Willkommen in Musterdorf</h1>
+        <p>Tradition trifft Zukunft. Erleben Sie Natur, Gemeinschaft und bayerische Gastfreundschaft.</p>
+        <a href="#news" class="cta-button">Dorfleben entdecken</a>
+    </section>
+
+    <!-- NEUIGKEITEN -->
+    <section id="news">
+        <h2 class="section-title">Neues aus der Gemeinde</h2>
+        <div class="news-grid">
+            <!-- News 1 -->
+            <article class="news-card">
+                <div class="news-image" style="background-image: url('https://source.unsplash.com/400x300/?festival,beer')"></div>
+                <div class="news-content">
+                    <span class="date">12. Mai 2024</span>
+                    <h3>Dorffest am Wochenende</h3>
+                    <p>Die freiwillige Feuerwehr lädt zum jährlichen Grillfest ein. Musik, Tanz und gute Laune sind garantiert.</p>
+                </div>
+            </article>
+            <!-- News 2 -->
+            <article class="news-card">
+                <div class="news-image" style="background-image: url('https://source.unsplash.com/400x300/?construction,road')"></div>
+                <div class="news-content">
+                    <span class="date">05. Mai 2024</span>
+                    <h3>Sanierung der Hauptstraße</h3>
+                    <p>Ab nächster Woche beginnen die Arbeiten am neuen Gehweg. Bitte beachten Sie die Umleitung.</p>
+                </div>
+            </article>
+            <!-- News 3 -->
+            <article class="news-card">
+                <div class="news-image" style="background-image: url('https://source.unsplash.com/400x300/?soccer,team')"></div>
+                <div class="news-content">
+                    <span class="date">28. April 2024</span>
+                    <h3>SV Musterdorf steigt auf!</h3>
+                    <p>Unser Fußballverein hat es geschafft. Herzlichen Glückwunsch an die 1. Mannschaft zum Aufstieg.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- ÜBER DAS DORF -->
+    <section id="vereine" style="background-color: white;">
+        <h2 class="section-title">Unser Dorfleben</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <h3>Eine Gemeinschaft, die zusammenhält</h3>
+                <p>Musterdorf ist mehr als nur ein Wohnort. Mit über 10 aktiven Vereinen, von der Blasmusik bis zum Sportverein, bieten wir ein reiches kulturelles Angebot.</p>
+                <br>
+                <p>Egal ob Sie alteingesessen sind oder neu zugezogen – bei uns findet jeder Anschluss. Entdecken Sie unsere Wanderwege im "Grünen Tal" oder besuchen Sie die historische Kirche aus dem 17. Jahrhundert.</p>
+            </div>
+            <div class="about-image"></div>
+        </div>
+    </section>
+
+    <!-- TERMINE -->
+    <section id="events">
+        <h2 class="section-title">Kommende Termine</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Veranstaltung</th>
+                    <th>Ort</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>20.06.2024</td>
+                    <td>Gemeinderatssitzung</td>
+                    <td>Rathaus, Saal 1</td>
+                </tr>
+                <tr>
+                    <td>24.06.2024</td>
+                    <td>Johannisfeuer</td>
+                    <td>Festwiese</td>
+                </tr>
+                <tr>
+                    <td>01.07.2024</td>
+                    <td>Wanderung Seniorenclub</td>
+                    <td>Treffpunkt Kirche</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Gemeinde Musterdorf</h4>
+                <p>Dorfplatz 1</p>
+                <p>12345 Musterdorf</p>
+                <br>
+                <p>Tel: 01234 / 56789</p>
+                <p>Email: info@musterdorf.de</p>
+            </div>
+            <div class="footer-section">
+                <h4>Öffnungszeiten Rathaus</h4>
+                <p>Mo - Fr: 08:00 - 12:00 Uhr</p>
+                <p>Do: 14:00 - 18:00 Uhr</p>
+            </div>
+            <div class="footer-section">
+                <h4>Schnelllinks</h4>
+                <ul>
+                    <li><a href="#">Bürgerservice</a></li>
+                    <li><a href="#">Müllabfuhrplan</a></li>
+                    <li><a href="#">Tourismus</a></li>
+                    <li><a href="#">Bauplätze</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Gemeinde Musterdorf. Alle Rechte vorbehalten. | <a href="#">Impressum</a> | <a href="#">Datenschutz</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Kleines Script für sanftes Scrollen
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
